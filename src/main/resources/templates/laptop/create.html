@@ -11,39 +11,18 @@
             <nav th:replace="layout/mainnav :: mainnav"></nav>
             <div class="container my-4">
                 <div class="row align-items-center">
-                    <div class="col-11">
-                        <h4 class="text-muted">Create Laptop</h4>
 
-                    </div>
-                    <div class="col-1">
-                        <button class="btn btn-primary btn-sm float-end" th:href="@{/laptop}">Back</button>
+                    <div class="col-1 offset-11">
+                        <a class="btn btn-primary btn-sm float-end" th:href="@{/laptop}">Back</a>
                     </div>
                 </div>
                 <div class="row my-4">
+
                     <div class="col-8 offset-2">
+
                         <div class="container-sm shadow-sm border-top border-3 border-primary">
-                            <form class="py-3" th:object="${assetRequestModel}"
-                                  th:action="@{/laptop/}"
-                                  method="post">
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="name">
-                                        Asset Name
-                                    </label>
-                                    <input type="text" class="form-control"
-                                                                    placeholder="Asset Name"
-                                                                    th:value="${assetRequestModel.name}"
-                                                                    id="name" name="name" th:field="*{name}">
-                                    <div class="invalid-feedback d-block">
-                                        <ul>
-                                            <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                                <button type="submit" class="btn btn-primary btn-sm">Save</button>
-                            </form>
+                            <h5 class="my-4">Provide laptop details</h5>
+                            <form th:replace="form/asset :: assetForm"></form>
                         </div>
                     </div>
                 </div>

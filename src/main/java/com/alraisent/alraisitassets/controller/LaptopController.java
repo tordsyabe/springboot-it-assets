@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -36,7 +35,7 @@ public class LaptopController {
     @GetMapping("/laptop/create")
     public String createLaptop(Model model) {
         model.addAttribute("assetRequestModel", new AssetRequestModel());
-        model.addAttribute("titleHeader", "Laptops");
+        model.addAttribute("titleHeader", "Create Laptop");
         model.addAttribute("title", "Create");
         return "laptop/create";
     }
@@ -45,13 +44,13 @@ public class LaptopController {
     public String saveLaptop(@Valid AssetRequestModel assetRequestModel, BindingResult result, Model model) {
         System.out.println(result);
         if (result.hasErrors()) {
+            model.addAttribute("titleHeader", "Create Laptop");
             return "laptop/create";
         }
 
         AssetDto assetDto = new AssetDto();
         BeanUtils.copyProperties(assetRequestModel, assetDto);
 
-        assetDto.setAssetId("asdfsdlfjsldjfj1212");
         assetService.saveAsset(assetDto);
 
         return "redirect:/laptop";

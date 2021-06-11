@@ -15,6 +15,7 @@ public class AssetRequestModel {
     @Size(min = 5, max = 250, message = "Asset name must be between 5 and 250")
     private String name;
 
+    @NotEmpty(message = "Provide a serial number")
     private String serial;
 
     private String model;

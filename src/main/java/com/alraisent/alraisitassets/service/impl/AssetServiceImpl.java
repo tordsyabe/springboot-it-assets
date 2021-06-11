@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
+
 
 @Service
 public class AssetServiceImpl implements AssetService {
@@ -26,6 +28,8 @@ public class AssetServiceImpl implements AssetService {
         AssetDto returnValue = new AssetDto();
         Asset newAsset = new Asset();
         BeanUtils.copyProperties(assetDto, newAsset);
+        newAsset.setAssetId(UUID.randomUUID().toString());
+        newAsset.setCreatedAt(LocalDateTime.now());
 
         Asset savedAsset = assetRepository.save(newAsset);
 
