@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head :: head"></head>
+<body>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div th:replace="layout/sidenav :: sidenav"></div>
+        </div>
+        <div class="col px-0 bg-light">
+            <nav th:replace="layout/mainnav :: mainnav"></nav>
+            <div class="container my-4">
+                <div class="row align-items-center">
+                    <div class="col-11">
+                        <h4 class="text-muted">Create Laptop</h4>
+
+                    </div>
+                    <div class="col-1">
+                        <button class="btn btn-primary btn-sm float-end" th:href="@{/laptop}">Back</button>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col-8 offset-2">
+                        <div class="container-sm shadow-sm border-top border-3 border-primary">
+                            <form class="py-3" th:object="${assetRequestModel}"
+                                  th:action="@{/laptop/}"
+                                  method="post">
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="name">
+                                        Asset Name
+                                    </label>
+                                    <input type="text" class="form-control"
+                                                                    placeholder="Asset Name"
+                                                                    th:value="${assetRequestModel.name}"
+                                                                    id="name" name="name" th:field="*{name}">
+                                    <div class="invalid-feedback d-block">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="/js/jquery/jquery.min.js"></script>
+<script src="/js/bootstrap/bootstrap.min.js"></script>
+</body>
+</html>
