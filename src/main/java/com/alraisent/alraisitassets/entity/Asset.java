@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -32,9 +31,8 @@ public class Asset implements Serializable {
 
     private String serial;
 
-    private String model;
-
-    private String modelNumber;
+    @ManyToOne
+    private Model model;
 
     private String category;
 
