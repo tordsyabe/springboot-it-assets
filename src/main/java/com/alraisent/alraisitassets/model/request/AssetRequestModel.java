@@ -22,7 +22,7 @@ public class AssetRequestModel {
 
     private String modelNumber;
 
-    private LocalDateTime purchaseDate;
+    private String purchaseDate;
 
     private String purchaseCost;
 

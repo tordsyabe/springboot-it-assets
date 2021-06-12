@@ -36,6 +36,8 @@ public class Asset implements Serializable {
 
     private String modelNumber;
 
+    private String category;
+
     private LocalDateTime purchaseDate;
 
     private String purchaseCost;
