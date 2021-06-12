@@ -1,9 +1,9 @@
 package com.alraisent.alraisitassets.controller;
 
 import com.alraisent.alraisitassets.dto.AssetDto;
+import com.alraisent.alraisitassets.mapper.AssetMapper;
 import com.alraisent.alraisitassets.model.request.AssetRequestModel;
 import com.alraisent.alraisitassets.service.AssetService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +17,12 @@ import javax.validation.Valid;
 public class LaptopController {
 
     private final AssetService assetService;
+    private final AssetMapper assetMapper;
 
     @Autowired
-    public LaptopController(AssetService assetService) {
+    public LaptopController(AssetService assetService, AssetMapper assetMapper) {
         this.assetService = assetService;
+        this.assetMapper = assetMapper;
     }
 
     @GetMapping("/laptop")
@@ -42,14 +44,12 @@ public class LaptopController {
 
     @PostMapping("laptop")
     public String saveLaptop(@Valid AssetRequestModel assetRequestModel, BindingResult result, Model model) {
-        System.out.println(result);
         if (result.hasErrors()) {
             model.addAttribute("titleHeader", "Create Laptop");
             return "laptop/create";
         }
 
-        AssetDto assetDto = new AssetDto();
-        BeanUtils.copyProperties(assetRequestModel, assetDto);
+        AssetDto assetDto = assetMapper.assetRequestModelToDto(assetRequestModel);
 
         assetService.saveAsset(assetDto);
 

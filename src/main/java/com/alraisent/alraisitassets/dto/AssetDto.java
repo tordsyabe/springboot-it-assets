@@ -1,5 +1,6 @@
 package com.alraisent.alraisitassets.dto;
 
+import com.alraisent.alraisitassets.entity.Model;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,7 +25,7 @@ public class AssetDto implements Serializable {
 
     private String serial;
 
-    private String model;
+    private ModelDto modelDto;
 
     private String modelNumber;
 

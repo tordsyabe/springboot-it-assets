@@ -18,9 +18,7 @@ public class AssetRequestModel {
     @NotEmpty(message = "Provide a serial number")
     private String serial;
 
-    private String model;
-
-    private String modelNumber;
+    private String modelId;
 
     private String purchaseDate;
 

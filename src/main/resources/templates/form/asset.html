@@ -65,15 +65,15 @@
         <div class="col-7">
             <input type="text" class="form-control"
                    placeholder="Model"
-                   th:value="${assetRequestModel.model}"
-                   id="model" name="model" th:field="*{model}">
+                   th:value="${assetRequestModel.modelId}"
+                   id="modelId" name="modelId" th:field="*{modelId}">
 
         </div>
 
         <div class="col-7 offset-3">
             <div class="invalid-feedback d-block">
                 <ul>
-                    <li th:each="err : ${#fields.errors('model')}" th:text="${err}"/>
+                    <li th:each="err : ${#fields.errors('modelId')}" th:text="${err}"/>
                 </ul>
             </div>
         </div>

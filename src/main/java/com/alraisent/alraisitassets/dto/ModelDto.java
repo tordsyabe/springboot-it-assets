@@ -1,44 +1,35 @@
-package com.alraisent.alraisitassets.entity;
+package com.alraisent.alraisitassets.dto;
 
+import com.alraisent.alraisitassets.entity.Asset;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
-@Table(name = "models")
-public class Model implements Serializable {
+public class ModelDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
     private String modelId;
 
-    @Column(nullable = false)
     private String brand;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private String modelNumber;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "model")
-    private List<Asset> assets = new ArrayList<>();
-
-
+    private List<AssetDto> assetsDto = new ArrayList<>();
 }
