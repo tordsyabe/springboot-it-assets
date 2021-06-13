@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -34,5 +36,16 @@ public class ModelServiceImpl implements ModelService {
         ModelDto savedModel = modelMapper.entityModelToDto(modelRepository.save(newModel));
 
         return savedModel;
+    }
+
+    @Override
+    public List<ModelDto> getModels() {
+
+        List<ModelDto> modelDtos = new ArrayList<>();
+
+        modelRepository.findAll().forEach(model -> {
+            modelDtos.add(modelMapper.entityModelToDto(model));
+        });
+        return modelDtos;
     }
 }

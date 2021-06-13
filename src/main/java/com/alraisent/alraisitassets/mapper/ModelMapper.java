@@ -3,6 +3,7 @@ package com.alraisent.alraisitassets.mapper;
 import com.alraisent.alraisitassets.dto.ModelDto;
 import com.alraisent.alraisitassets.entity.Model;
 import com.alraisent.alraisitassets.model.request.ModelRequestModel;
+import com.alraisent.alraisitassets.model.response.ModelResponseModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -20,5 +21,7 @@ public interface ModelMapper {
     ModelDto entityModelToDto(Model model);
 
     ModelDto modelRequestModelToDto(ModelRequestModel modelRequestModel);
+
+    ModelResponseModel modelDtoToResponse(ModelDto modelDto);
 
 }

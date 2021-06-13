@@ -89,5 +89,11 @@
 
         </div>
     </div>
-
+    <tr th:each="modelResponseModel: ${modelResponseModels}">
+        <td th:text="${modelResponseModel.modelId}" />
+        <td th:text="${modelResponseModel.brand}" />
+        <td th:text="${modelResponseModel.name}" />
+        <td th:text="${modelResponseModel.modelNumber}" />
+    </tr>
 </form>
+
