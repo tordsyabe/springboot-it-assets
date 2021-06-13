@@ -4,5 +4,5 @@ import com.alraisent.alraisitassets.dto.ModelDto;
 
 public interface ModelService {
 
-    ModelDto createModel(ModelDto modelDto);
+    ModelDto saveModel(ModelDto modelDto);
 }

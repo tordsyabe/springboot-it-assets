@@ -35,10 +35,10 @@ public class LaptopController {
     }
 
     @GetMapping("/laptop/create")
-    public String createLaptop(Model model) {
+    public String createLaptopPage(Model model) {
         model.addAttribute("assetRequestModel", new AssetRequestModel());
         model.addAttribute("titleHeader", "Create Laptop");
-        model.addAttribute("title", "Create");
+        model.addAttribute("title", "Create Laptop");
         return "laptop/create";
     }
 

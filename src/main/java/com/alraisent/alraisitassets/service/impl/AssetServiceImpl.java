@@ -32,6 +32,7 @@ public class AssetServiceImpl implements AssetService {
 
         newAsset.setAssetId(UUID.randomUUID().toString());
         newAsset.setCreatedAt(LocalDateTime.now());
+        newAsset.setUpdatedAt(LocalDateTime.now());
 
         Asset savedAsset = assetRepository.save(newAsset);
 

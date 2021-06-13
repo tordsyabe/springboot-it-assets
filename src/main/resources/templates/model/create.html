@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head :: head"></head>
+<body>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div th:replace="layout/sidenav :: sidenav"></div>
+        </div>
+        <div class="col px-0 bg-light">
+            <nav th:replace="layout/mainnav :: mainnav"></nav>
+            <div class="container my-4">
+                <div class="row align-items-center">
+
+                    <div class="col-1 offset-11">
+                        <a class="btn btn-primary btn-sm float-end" th:href="@{/model}">Back</a>
+                    </div>
+                </div>
+                <div class="row my-4">
+
+                    <div class="col-8 offset-2">
+
+                        <div class="container-sm shadow-sm border-top border-3 border-primary bg-white">
+                            <h5 class="my-4">Provide model details</h5>
+                            <form th:replace="form/model :: modelForm"></form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+<script src="/js/jquery/jquery.min.js"></script>
+<script src="/js/bootstrap/bootstrap.min.js"></script>
+</body>
+</html>

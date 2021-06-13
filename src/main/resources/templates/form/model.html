@@ -1,0 +1,93 @@
+<form th:fragment="modelForm" class="py-3" th:object="${modelRequestModel}"
+      th:action="@{/model/}"
+      method="post">
+    <!--  Asset Name  -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="brand">
+                Brand
+            </label>
+        </div>
+
+        <div class="col-7">
+            <input type="text" class="form-control
+"
+                   placeholder="Brand"
+                   th:value="${modelRequestModel.brand}"
+                   id="brand" name="brand" th:field="*{brand}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('brand')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+    <!--  Serial  -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="name">
+                Model Name
+            </label>
+        </div>
+
+        <div class="col-7">
+            <input type="text" class="form-control"
+                   placeholder="Model name"
+                   th:value="${modelRequestModel.name}"
+                   id="name" name="name" th:field="*{name}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('name')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+    <!--  Model Selection  -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="modelNumber">
+                Model number
+            </label>
+        </div>
+
+        <div class="col-7">
+            <input type="text" class="form-control"
+                   placeholder="Model"
+                   th:value="${modelRequestModel.modelNumber}"
+                   id="modelNumber" name="modelNumber" th:field="*{modelNumber}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('modelNumber')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+    <!--   Submit Button -->
+    <div class="row">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-sm float-end">Save</button>
+            <a th:href="@{/model}" class="btn btn-secondary btn-sm float-end mx-2">Cancel</a>
+
+
+        </div>
+    </div>
+
+</form>
