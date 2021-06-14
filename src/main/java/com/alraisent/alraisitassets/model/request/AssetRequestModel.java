@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 public class AssetRequestModel {
 
     @NotEmpty(message = "Asset name cannot be empty")
-    @Size(min = 5, max = 250, message = "Asset name must be between 5 and 250")
     private String name;
 
     @NotEmpty(message = "Provide a serial number")

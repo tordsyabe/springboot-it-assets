@@ -57,16 +57,18 @@
     <!--  Model Selection  -->
     <div class="mb-1 row align-items-center">
         <div class="col-3">
-            <label class="form-label fw-bold float-end" for="model">
+            <label class="form-label fw-bold float-end" for="modelId">
                 Model
             </label>
         </div>
 
         <div class="col-7">
-            <input type="text" class="form-control"
-                   placeholder="Model"
-                   th:value="${assetRequestModel.modelId}"
-                   id="modelId" name="modelId" th:field="*{modelId}">
+            <select class="form-select form-select-sm selectpicker w-100" name="modelId" id="modelId" th:field="*{modelId}"
+                    data-live-search="true">
+
+                <option th:each="model : ${modelResponseModels}"
+                        th:value="${model.modelId}">[[${model.brand}]] [[${model.name}]] [[${model.modelNumber}]]</option>
+            </select>
 
         </div>
 
@@ -89,11 +91,6 @@
 
         </div>
     </div>
-    <tr th:each="modelResponseModel: ${modelResponseModels}">
-        <td th:text="${modelResponseModel.modelId}" />
-        <td th:text="${modelResponseModel.brand}" />
-        <td th:text="${modelResponseModel.name}" />
-        <td th:text="${modelResponseModel.modelNumber}" />
-    </tr>
+
 </form>
 

@@ -52,8 +52,6 @@ public class LaptopController {
             modelResponseModels.add(modelMapper.modelDtoToResponse(modelDto));
         });
 
-        System.out.println(modelResponseModels);
-
         model.addAttribute("assetRequestModel", new AssetRequestModel());
         model.addAttribute("modelResponseModels", modelResponseModels);
         model.addAttribute("titleHeader", "Create Laptop");
@@ -64,7 +62,15 @@ public class LaptopController {
     @PostMapping("laptop")
     public String saveLaptop(@Valid AssetRequestModel assetRequestModel, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            List<ModelResponseModel> modelResponseModels = new ArrayList<>();
+
+            modelService.getModels().forEach(modelDto -> {
+                modelResponseModels.add(modelMapper.modelDtoToResponse(modelDto));
+            });
+
+            model.addAttribute("modelResponseModels", modelResponseModels);
             model.addAttribute("titleHeader", "Create Laptop");
+            model.addAttribute("title", "Create Laptop");
             return "laptop/create";
         }
 
