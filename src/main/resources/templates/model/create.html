@@ -22,7 +22,7 @@
 
                         <div class="container-sm shadow-sm border-top border-3 border-primary bg-white">
                             <h5 class="my-4">Provide model details</h5>
-                            <form th:replace="form/model :: modelForm"></form>
+                            <form th:replace="form/modelForm :: modelForm"></form>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
     </div>
 </div>
 </div>
-<script src="/js/jquery/jquery.min.js"></script>
-<script src="/js/bootstrap/bootstrap.min.js"></script>
+<th:block th:include="layout/scripts :: scripts"></th:block>
+
 </body>
 </html>

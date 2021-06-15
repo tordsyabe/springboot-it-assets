@@ -20,6 +20,7 @@ public interface AssetMapper {
     @Mapping(target = "modelDto", source = "asset.model")
     AssetDto assetEntityToDto(Asset asset);
 
-    @Mapping(target = "modelDto", source = "modelId")
+    @Mapping(target = "modelDto", source = "assetRequestModel.modelId")
+    @Mapping(target = "purchaseDate", source = "assetRequestModel.purchaseDate", dateFormat = "yyyy-MM-dd hh:mm:ss")
     AssetDto assetRequestModelToDto(AssetRequestModel assetRequestModel);
 }

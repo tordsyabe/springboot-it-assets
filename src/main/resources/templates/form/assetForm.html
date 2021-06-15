@@ -63,11 +63,13 @@
         </div>
 
         <div class="col-7">
-            <select class="form-select form-select-sm selectpicker w-100" name="modelId" id="modelId" th:field="*{modelId}"
+            <select class="form-select form-select-sm selectpicker w-100" name="modelId" id="modelId"
+                    th:field="*{modelId}"
                     data-live-search="true">
 
                 <option th:each="model : ${modelResponseModels}"
-                        th:value="${model.modelId}">[[${model.brand}]] [[${model.name}]] [[${model.modelNumber}]]</option>
+                        th:value="${model.modelId}">[[${model.brand}]] [[${model.name}]] [[${model.modelNumber}]]
+                </option>
             </select>
 
         </div>
@@ -82,6 +84,34 @@
 
 
     </div>
+    <!--  purchase date   -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="purchaseDate">
+                Purchase Date
+            </label>
+        </div>
+
+        <div class="col-7">
+            <input type="date" class="form-control
+"
+                   placeholder="Purchase Date"
+                   th:value="${assetRequestModel.purchaseDate}"
+                   id="purchaseDate" name="purchaseDate" th:field="*{purchaseDate}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('purchaseDate')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
     <!--   Submit Button -->
     <div class="row">
         <div class="col-12">
