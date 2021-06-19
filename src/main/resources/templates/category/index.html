@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head :: head"></head>
+<body>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div th:replace="layout/sidenav :: sidenav"></div>
+        </div>
+        <div class="col px-0 bg-light">
+            <nav th:replace="layout/mainnav :: mainnav"></nav>
+            <div class="row p-3 m-3 shadow-sm bg-white" >
+                <div class="col-12">
+                    <a th:href="@{/category/create}" type="button" class="btn btn-primary float-end btn-sm">Create</a>
+                </div>
+                <div class="col">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th> Name </th>
+                            <th> Type </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${categories.empty}">
+                            <td colspan="2"> No Categories Available </td>
+                        </tr>
+                        <tr th:each="category : ${categories}">
+                            <td><span th:text="${category.name}"> Name </span></td>
+                            <td><span th:text="${category.assetType.displayValue}"> Type </span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="layout/scripts :: scripts"></th:block>
+
+</body>
+</html>

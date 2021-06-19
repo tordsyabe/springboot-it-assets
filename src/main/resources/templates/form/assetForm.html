@@ -111,7 +111,33 @@
 
 
     </div>
+    <!--  purchase cost   -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="purchaseCost">
+                Purchase Cost (AED)
+            </label>
+        </div>
 
+        <div class="col-7">
+            <input type="text" class="form-control
+"
+                   placeholder="Purchase Cost"
+                   th:value="${assetRequestModel.purchaseCost}"
+                   id="purchaseCost" name="purchaseCost" th:field="*{purchaseCost}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('purchaseCost')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
     <!--   Submit Button -->
     <div class="row">
         <div class="col-12">

@@ -35,11 +35,12 @@ public class Asset implements Serializable {
     @ManyToOne
     private Model model;
 
-    private String category;
-
     private LocalDate purchaseDate;
 
     private String purchaseCost;
+
+    @ManyToOne
+    private Category category;
 
     private String supplier;
 

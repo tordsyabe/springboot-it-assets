@@ -22,7 +22,7 @@ public class AssetRequestModel {
 
     private String purchaseCost;
 
-    private String supplier;
+    private String supplierId;
 
     private String depreciation;
 
@@ -31,5 +31,7 @@ public class AssetRequestModel {
     private String location;
 
     private String label;
+
+    private String categoryId;
 
 }

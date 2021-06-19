@@ -35,7 +35,7 @@ public class LaptopController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/laptop")
+    @GetMapping("/laptops")
     public String laptopPage(Model model) {
 
         model.addAttribute("titleHeader", "Laptops");
@@ -60,7 +60,7 @@ public class LaptopController {
         return "laptop/create";
     }
 
-    @PostMapping("laptop")
+    @PostMapping("laptops")
     public String saveLaptop(@Valid AssetRequestModel assetRequestModel, BindingResult result, Model model) {
         if (result.hasErrors()) {
             List<ModelResponseModel> modelResponseModels = new ArrayList<>();

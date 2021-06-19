@@ -28,11 +28,11 @@ public class AssetDto implements Serializable {
 
     private ModelDto modelDto;
 
-    private String modelNumber;
-
     private LocalDate purchaseDate;
 
-    private String purchaseCost;
+    private float purchaseCost;
+
+    private CategoryDto categoryDto;
 
     private String supplier;
 
