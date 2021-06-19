@@ -2,6 +2,7 @@ package com.alraisent.alraisitassets.controller;
 
 import com.alraisent.alraisitassets.dto.AssetDto;
 import com.alraisent.alraisitassets.mapper.AssetMapper;
+import com.alraisent.alraisitassets.mapper.CycleAvoidingMappingContext;
 import com.alraisent.alraisitassets.mapper.ModelMapper;
 import com.alraisent.alraisitassets.model.request.AssetRequestModel;
 import com.alraisent.alraisitassets.model.response.ModelResponseModel;
@@ -49,7 +50,7 @@ public class LaptopController {
         List<ModelResponseModel> modelResponseModels = new ArrayList<>();
 
         modelService.getModels().forEach(modelDto -> {
-            modelResponseModels.add(modelMapper.modelDtoToResponse(modelDto));
+            modelResponseModels.add(modelMapper.modelDtoToResponse(modelDto, new CycleAvoidingMappingContext()));
         });
 
         model.addAttribute("assetRequestModel", new AssetRequestModel());
@@ -65,7 +66,7 @@ public class LaptopController {
             List<ModelResponseModel> modelResponseModels = new ArrayList<>();
 
             modelService.getModels().forEach(modelDto -> {
-                modelResponseModels.add(modelMapper.modelDtoToResponse(modelDto));
+                modelResponseModels.add(modelMapper.modelDtoToResponse(modelDto, new CycleAvoidingMappingContext()));
             });
 
             model.addAttribute("modelResponseModels", modelResponseModels);
@@ -73,8 +74,7 @@ public class LaptopController {
             model.addAttribute("title", "Create Laptop");
             return "laptop/create";
         }
-
-        AssetDto assetDto = assetMapper.assetRequestModelToDto(assetRequestModel);
+        AssetDto assetDto = assetMapper.assetRequestModelToDto(assetRequestModel, new CycleAvoidingMappingContext());
 
         assetService.saveAsset(assetDto);
 

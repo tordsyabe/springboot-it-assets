@@ -2,6 +2,7 @@ package com.alraisent.alraisitassets.service.impl;
 
 import com.alraisent.alraisitassets.dto.ModelDto;
 import com.alraisent.alraisitassets.entity.Model;
+import com.alraisent.alraisitassets.mapper.CycleAvoidingMappingContext;
 import com.alraisent.alraisitassets.mapper.ModelMapper;
 import com.alraisent.alraisitassets.repository.ModelRepository;
 import com.alraisent.alraisitassets.service.ModelService;
@@ -28,12 +29,12 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public ModelDto saveModel(ModelDto modelDto) {
 
-        Model newModel =  modelMapper.modelDtoToEntity(modelDto);
+        Model newModel =  modelMapper.modelDtoToEntity(modelDto, new CycleAvoidingMappingContext());
         newModel.setModelId(UUID.randomUUID().toString());
         newModel.setCreatedAt(LocalDateTime.now());
         newModel.setUpdatedAt(LocalDateTime.now());
 
-        ModelDto savedModel = modelMapper.entityModelToDto(modelRepository.save(newModel));
+        ModelDto savedModel = modelMapper.entityModelToDto(modelRepository.save(newModel), new CycleAvoidingMappingContext());
 
         return savedModel;
     }
@@ -44,7 +45,7 @@ public class ModelServiceImpl implements ModelService {
         List<ModelDto> modelDtos = new ArrayList<>();
 
         modelRepository.findAll().forEach(model -> {
-            modelDtos.add(modelMapper.entityModelToDto(model));
+            modelDtos.add(modelMapper.entityModelToDto(model, new CycleAvoidingMappingContext()));
         });
         return modelDtos;
     }

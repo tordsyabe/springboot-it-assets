@@ -3,6 +3,7 @@ package com.alraisent.alraisitassets.service.impl;
 import com.alraisent.alraisitassets.dto.AssetDto;
 import com.alraisent.alraisitassets.entity.Asset;
 import com.alraisent.alraisitassets.mapper.AssetMapper;
+import com.alraisent.alraisitassets.mapper.CycleAvoidingMappingContext;
 import com.alraisent.alraisitassets.repository.AssetRepository;
 import com.alraisent.alraisitassets.service.AssetService;
 import org.springframework.beans.BeanUtils;
@@ -28,7 +29,7 @@ public class AssetServiceImpl implements AssetService {
     @Override
     public AssetDto saveAsset(AssetDto assetDto) {
 
-        Asset newAsset = assetMapper.AssetDtoToEntity(assetDto);
+        Asset newAsset = assetMapper.AssetDtoToEntity(assetDto, new CycleAvoidingMappingContext());
 
         newAsset.setAssetId(UUID.randomUUID().toString());
         newAsset.setCreatedAt(LocalDateTime.now());
@@ -36,7 +37,7 @@ public class AssetServiceImpl implements AssetService {
 
         Asset savedAsset = assetRepository.save(newAsset);
 
-        AssetDto returnValue = assetMapper.assetEntityToDto(savedAsset);
+        AssetDto returnValue = assetMapper.assetEntityToDto(savedAsset, new CycleAvoidingMappingContext());
 
         return returnValue;
     }

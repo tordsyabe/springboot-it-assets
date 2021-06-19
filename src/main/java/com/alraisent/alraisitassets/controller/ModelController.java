@@ -1,6 +1,7 @@
 package com.alraisent.alraisitassets.controller;
 
 import com.alraisent.alraisitassets.dto.ModelDto;
+import com.alraisent.alraisitassets.mapper.CycleAvoidingMappingContext;
 import com.alraisent.alraisitassets.mapper.ModelMapper;
 import com.alraisent.alraisitassets.model.request.ModelRequestModel;
 import com.alraisent.alraisitassets.service.ModelService;
@@ -49,7 +50,7 @@ public class ModelController {
             return "model/create";
         }
 
-        ModelDto modelDto = modelMapper.modelRequestModelToDto(modelRequestModel);
+        ModelDto modelDto = modelMapper.modelRequestModelToDto(modelRequestModel, new CycleAvoidingMappingContext());
 
         modelService.saveModel(modelDto);
 

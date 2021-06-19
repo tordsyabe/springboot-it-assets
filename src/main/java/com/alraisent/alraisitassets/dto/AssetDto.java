@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -29,7 +30,7 @@ public class AssetDto implements Serializable {
 
     private String modelNumber;
 
-    private LocalDateTime purchaseDate;
+    private LocalDate purchaseDate;
 
     private String purchaseCost;
 
