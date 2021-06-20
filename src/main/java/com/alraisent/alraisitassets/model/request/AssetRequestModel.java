@@ -22,6 +22,8 @@ public class AssetRequestModel {
 
     private String purchaseCost;
 
+    private String categoryId;
+
     private String supplierId;
 
     private String depreciation;
@@ -32,6 +34,5 @@ public class AssetRequestModel {
 
     private String label;
 
-    private String categoryId;
 
 }
