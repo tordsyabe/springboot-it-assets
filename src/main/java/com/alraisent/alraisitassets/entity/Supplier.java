@@ -2,17 +2,19 @@ package com.alraisent.alraisitassets.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "assets")
-public class Asset implements Serializable {
+@Table(name = "suppliers")
+public class Supplier implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -21,7 +23,7 @@ public class Asset implements Serializable {
     private long id;
 
     @Column(nullable = false)
-    private String assetId;
+    private String supplierId;
 
     @Column(nullable = false)
     private String name;
@@ -30,27 +32,18 @@ public class Asset implements Serializable {
 
     private LocalDateTime updatedAt;
 
-    private String serial;
+    private String contactPerson;
 
-    @ManyToOne
-    private Model model;
+    private String mobile;
 
-    private LocalDate purchaseDate;
+    private String phone;
 
-    private String purchaseCost;
+    private String address;
 
-    @ManyToOne
-    private Category category;
+    private String email;
 
-    @ManyToOne
-    private Supplier supplier;
+    private String website;
 
-    private String depreciation;
-
-    private String notes;
-
-    private String location;
-
-    private String label;
-
+    @OneToMany(mappedBy = "supplier")
+    private List<Asset> assets = new ArrayList<>();
 }

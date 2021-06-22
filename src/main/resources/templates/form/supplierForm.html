@@ -1,0 +1,210 @@
+<form th:fragment="supplierForm" class="py-3" th:object="${supplierRequestModel}"
+      th:action="@{/supplier/}"
+      method="post">
+    <!--  Supplier Name  -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="name">
+                Supplier Name
+            </label>
+        </div>
+
+        <div class="col-7">
+            <input type="text" class="form-control
+"
+                   placeholder="Supplier Name"
+                   th:value="${supplierRequestModel.name}"
+                   id="name" name="name" th:field="*{name}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('name')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--  Contact Person  -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="contactPerson">
+                Contact Person
+            </label>
+        </div>
+
+        <div class="col-7">
+            <input type="text" class="form-control
+"
+                   placeholder="Contact Person"
+                   th:value="${supplierRequestModel.contactPerson}"
+                   id="contactPerson" name="contactPerson" th:field="*{contactPerson}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('contactPerson')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--  Mobile  -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="mobile">
+                Mobile
+            </label>
+        </div>
+
+        <div class="col-7">
+            <input type="text" class="form-control
+"
+                   placeholder="Mobile"
+                   th:value="${supplierRequestModel.mobile}"
+                   id="mobile" name="mobile" th:field="*{mobile}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('mobile')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--  Phone  -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="phone">
+                Phone
+            </label>
+        </div>
+
+        <div class="col-7">
+            <input type="text" class="form-control
+"
+                   placeholder="Phone"
+                   th:value="${supplierRequestModel.phone}"
+                   id="phone" name="phone" th:field="*{phone}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('phone')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--  Address  -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="address">
+                Address
+            </label>
+        </div>
+
+        <div class="col-7">
+            <input type="text" class="form-control
+"
+                   placeholder="Phone"
+                   th:value="${supplierRequestModel.address}"
+                   id="address" name="address" th:field="*{address}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('address')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--  Website  -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="website">
+                Website
+            </label>
+        </div>
+
+        <div class="col-7">
+            <input type="text" class="form-control
+"
+                   placeholder="Website"
+                   th:value="${supplierRequestModel.website}"
+                   id="website" name="website" th:field="*{website}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('website')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--  Email  -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="email">
+                Email
+            </label>
+        </div>
+
+        <div class="col-7">
+            <input type="text" class="form-control
+"
+                   placeholder="Email"
+                   th:value="${supplierRequestModel.website}"
+                   id="email" name="email" th:field="*{email}">
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('email')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--   Submit Button -->
+    <div class="row">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-sm float-end">Save</button>
+            <a th:href="@{/category}" class="btn btn-secondary btn-sm float-end mx-2">Cancel</a>
+
+
+        </div>
+    </div>
+
+</form>

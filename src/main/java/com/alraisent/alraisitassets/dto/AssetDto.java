@@ -34,7 +34,7 @@ public class AssetDto implements Serializable {
 
     private CategoryDto categoryDto;
 
-    private String supplier;
+    private SupplierDto supplierDto;
 
     private String depreciation;
 
