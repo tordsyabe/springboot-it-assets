@@ -6,6 +6,7 @@ import com.alraisent.alraisitassets.entity.Model;
 import com.alraisent.alraisitassets.entity.Supplier;
 import com.alraisent.alraisitassets.model.request.ModelRequestModel;
 import com.alraisent.alraisitassets.model.request.SupplierRequestModel;
+import com.alraisent.alraisitassets.model.response.SupplierResponseModel;
 import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -24,4 +25,7 @@ public interface SupplierMapper {
     SupplierDto entitySupplierToDto(Supplier supplier, @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
 
     SupplierDto supplierRequestModelToDto(SupplierRequestModel supplierRequestModel, @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
+
+    SupplierResponseModel supplierDtoToResponse(SupplierDto supplierDto, @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
+
 }

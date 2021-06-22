@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -37,5 +39,17 @@ public class SupplierServiceImpl implements SupplierService {
         SupplierDto saveSupplier = supplierMapper.entitySupplierToDto(supplierRepository.save(newSupplier), new CycleAvoidingMappingContext());
 
         return saveSupplier;
+    }
+
+    @Override
+    public List<SupplierDto> getSuppliers() {
+
+        List<SupplierDto> supplierDtos = new ArrayList<>();
+
+        supplierRepository.findAll().forEach(supplier -> {
+            supplierDtos.add(supplierMapper.entitySupplierToDto(supplier, new CycleAvoidingMappingContext()));
+        });
+
+        return supplierDtos;
     }
 }

@@ -168,6 +168,37 @@
 
 
     </div>
+
+    <!--  Supplier Selection  -->
+    <div class="mb-1 row align-items-center">
+        <div class="col-3">
+            <label class="form-label fw-bold float-end" for="supplierId">
+                Supplier
+            </label>
+        </div>
+
+        <div class="col-7">
+            <select class="form-select form-select-sm selectpicker w-100" name="supplierId" id="supplierId"
+                    th:field="*{supplierId}"
+                    data-live-search="true">
+
+                <option th:each="supplier : ${supplierResponseModels}"
+                        th:value="${supplier.supplierId}">[[${supplier.name}]]
+                </option>
+            </select>
+
+        </div>
+
+        <div class="col-7 offset-3">
+            <div class="invalid-feedback d-block">
+                <ul>
+                    <li th:each="err : ${#fields.errors('modelId')}" th:text="${err}"/>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
     <!--   Submit Button -->
     <div class="row">
         <div class="col-12">
