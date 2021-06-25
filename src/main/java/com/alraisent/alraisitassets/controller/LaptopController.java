@@ -73,6 +73,10 @@ public class LaptopController {
             supplierResponseModels.add(supplierMapper.supplierDtoToResponse(supplierDto, new CycleAvoidingMappingContext()));
         });
 
+        modelResponseModels.forEach(models -> {
+            System.out.println(models.toString());
+        });
+
         model.addAttribute("assetRequestModel", new AssetRequestModel());
         model.addAttribute("modelResponseModels", modelResponseModels);
         model.addAttribute("categoryResponseModels", categoryResponseModels);
