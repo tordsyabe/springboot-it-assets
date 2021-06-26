@@ -26,6 +26,8 @@ public class AssetRequestModel {
 
     private String supplierId;
 
+    private String employeeId;
+
     private String depreciation;
 
     private String notes;

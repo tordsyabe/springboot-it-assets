@@ -1,9 +1,12 @@
-package com.alraisent.alraisitassets;
+package com.alraisent.alraisitassets.service.impl;
 
+import com.alraisent.alraisitassets.dto.EmployeeDto;
+import com.alraisent.alraisitassets.service.EmployeeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
+import org.springframework.stereotype.Service;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,12 +16,13 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
-import static org.assertj.core.util.Lists.emptyList;
 
-public class OdooXmlRpc {
-
-    public static void main(String[] args) throws MalformedURLException, XmlRpcException {
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+    @Override
+    public List<Map<String, EmployeeDto>> getEmployees() throws MalformedURLException, XmlRpcException {
 
         final String url = "http://192.168.10.17:8059",
                 db = "Final_AlraisEnterprises",
@@ -52,18 +56,17 @@ public class OdooXmlRpc {
                     put("limit", 5);
                 }}
         )));
-
         ObjectMapper oMapper = new ObjectMapper();
 
-        List<Map<String, Employee>> employees = new ArrayList<>();
+        List<Map<String, EmployeeDto>> employeesDto = new ArrayList<>();
 
         partners.forEach(partner -> {
-            Map<String, Employee> employee = oMapper.convertValue(partner, Map.class);
+            Map<String, EmployeeDto> employeeDtoMap = oMapper.convertValue(partner, Map.class);
 
-            employees.add(employee);
+            employeesDto.add(employeeDtoMap);
 
         });
 
-        System.out.println(employees);
+        return employeesDto;
     }
 }

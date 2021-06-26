@@ -1,5 +1,6 @@
 package com.alraisent.alraisitassets.entity;
 
+import com.alraisent.alraisitassets.dto.EmployeeDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,6 +45,9 @@ public class Asset implements Serializable {
 
     @ManyToOne
     private Supplier supplier;
+
+    @ManyToOne
+    private EmployeeDto employee;
 
     private String depreciation;
 

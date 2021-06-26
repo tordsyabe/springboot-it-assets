@@ -1,15 +1,14 @@
 package com.alraisent.alraisitassets.controller;
 
 import com.alraisent.alraisitassets.dto.AssetDto;
+import com.alraisent.alraisitassets.dto.EmployeeDto;
 import com.alraisent.alraisitassets.mapper.*;
 import com.alraisent.alraisitassets.model.request.AssetRequestModel;
 import com.alraisent.alraisitassets.model.response.CategoryResponseModel;
 import com.alraisent.alraisitassets.model.response.ModelResponseModel;
 import com.alraisent.alraisitassets.model.response.SupplierResponseModel;
-import com.alraisent.alraisitassets.service.AssetService;
-import com.alraisent.alraisitassets.service.CategoryService;
-import com.alraisent.alraisitassets.service.ModelService;
-import com.alraisent.alraisitassets.service.SupplierService;
+import com.alraisent.alraisitassets.service.*;
+import org.apache.xmlrpc.XmlRpcException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +17,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class LaptopController {
@@ -32,9 +33,10 @@ public class LaptopController {
     private final CategoryMapper categoryMapper;
     private final SupplierService supplierService;
     private final SupplierMapper supplierMapper;
+    private final EmployeeService employeeService;
 
     @Autowired
-    public LaptopController(AssetService assetService, AssetMapper assetMapper, ModelService modelService, CategoryMapper categoryMapper, ModelMapper modelMapper, CategoryService categoryService, SupplierService supplierService, SupplierMapper supplierMapper) {
+    public LaptopController(AssetService assetService, AssetMapper assetMapper, ModelService modelService, CategoryMapper categoryMapper, ModelMapper modelMapper, CategoryService categoryService, SupplierService supplierService, SupplierMapper supplierMapper, EmployeeService employeeService) {
         this.assetService = assetService;
         this.assetMapper = assetMapper;
         this.modelService = modelService;
@@ -43,6 +45,7 @@ public class LaptopController {
         this.categoryService = categoryService;
         this.supplierService = supplierService;
         this.supplierMapper = supplierMapper;
+        this.employeeService = employeeService;
     }
 
     @GetMapping("/laptop")
@@ -55,11 +58,12 @@ public class LaptopController {
     }
 
     @GetMapping("/laptop/create")
-    public String createLaptopPage(Model model) {
+    public String createLaptopPage(Model model) throws MalformedURLException, XmlRpcException {
 
         List<ModelResponseModel> modelResponseModels = new ArrayList<>();
         List<CategoryResponseModel> categoryResponseModels = new ArrayList<>();
         List<SupplierResponseModel> supplierResponseModels = new ArrayList<>();
+        List<Map<String, EmployeeDto>> employeesDto = new ArrayList<>();
 
         modelService.getModels().forEach(modelDto -> {
             modelResponseModels.add(modelMapper.modelDtoToResponse(modelDto, new CycleAvoidingMappingContext()));
@@ -73,14 +77,18 @@ public class LaptopController {
             supplierResponseModels.add(supplierMapper.supplierDtoToResponse(supplierDto, new CycleAvoidingMappingContext()));
         });
 
-        modelResponseModels.forEach(models -> {
-            System.out.println(models.toString());
+        employeeService.getEmployees().forEach(employeeDto -> {
+            employeesDto.add(employeeDto);
         });
+
+        System.out.println(employeesDto);
+
 
         model.addAttribute("assetRequestModel", new AssetRequestModel());
         model.addAttribute("modelResponseModels", modelResponseModels);
         model.addAttribute("categoryResponseModels", categoryResponseModels);
         model.addAttribute("supplierResponseModels", supplierResponseModels);
+        model.addAttribute("employeesDto", employeesDto);
         model.addAttribute("titleHeader", "Create Laptop");
         model.addAttribute("title", "Create Laptop");
         return "laptop/create";
