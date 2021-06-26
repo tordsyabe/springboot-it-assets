@@ -28,7 +28,7 @@ public class AssetRequestModel {
 
     private String companyId;
 
-    private String depreciation;
+    private String status;
 
     private String notes;
 

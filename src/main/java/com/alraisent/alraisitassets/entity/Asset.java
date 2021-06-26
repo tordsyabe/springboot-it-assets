@@ -48,7 +48,7 @@ public class Asset implements Serializable {
 
     private String companyId;
 
-    private String depreciation;
+    private String status;
 
     private String notes;
 

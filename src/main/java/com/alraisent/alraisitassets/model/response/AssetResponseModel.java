@@ -29,7 +29,7 @@ public class AssetResponseModel {
 
     private String supplier;
 
-    private String depreciation;
+    private String status;
 
     private String notes;
 
