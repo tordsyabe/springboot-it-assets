@@ -1,9 +1,13 @@
-package com.alraisent.alraisitassets;
+package com.alraisent.alraisitassets.service.impl;
 
+import com.alraisent.alraisitassets.dto.CompanyDto;
+import com.alraisent.alraisitassets.dto.EmployeeDto;
+import com.alraisent.alraisitassets.service.CompanyService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
+import org.springframework.stereotype.Service;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,12 +17,13 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
-import static org.assertj.core.util.Lists.emptyList;
 
-public class OdooXmlRpc {
-
-    public static void main(String[] args) throws MalformedURLException, XmlRpcException {
+@Service
+public class CompanyServiceImpl implements CompanyService {
+    @Override
+    public List<Map<String, CompanyDto>> getCompanies() throws MalformedURLException, XmlRpcException {
 
         final String url = "http://localhost:8069",
                 db = "alraiF",
@@ -42,28 +47,25 @@ public class OdooXmlRpc {
             }});
         }};
 
-        List employeeById = asList((Object[])models.execute("execute_kw", asList(
+        List companies = asList((Object[])models.execute("execute_kw", asList(
                 db, uid, password,
-                "hr.employee", "search_read",
-                asList(asList(
-                        asList("id", "=", 2))),
+                "res.company", "search_read", emptyList(),
                 new HashMap() {{
-                    put("fields", asList("name", "job_title"));
-                    put("limit", 5);
+                    put("fields", asList("name"));
                 }}
         )));
 
         ObjectMapper oMapper = new ObjectMapper();
 
-        List<Map<String, Employee>> employees = new ArrayList<>();
+        List<Map<String, CompanyDto>> companiesDto = new ArrayList<>();
 
-        employeeById.forEach(partner -> {
-            Map<String, Employee> employee = oMapper.convertValue(partner, Map.class);
+        companies.forEach(company -> {
+            Map<String, CompanyDto> companyDtoMap = oMapper.convertValue(company, Map.class);
 
-            employees.add(employee);
+            companiesDto.add(companyDtoMap);
 
         });
 
-        System.out.println(employees);
+        return companiesDto;
     }
 }

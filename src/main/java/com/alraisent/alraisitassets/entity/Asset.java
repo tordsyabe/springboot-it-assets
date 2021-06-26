@@ -46,8 +46,7 @@ public class Asset implements Serializable {
     @ManyToOne
     private Supplier supplier;
 
-    @ManyToOne
-    private EmployeeDto employee;
+    private String companyId;
 
     private String depreciation;
 

@@ -24,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Map<String, EmployeeDto>> getEmployees() throws MalformedURLException, XmlRpcException {
 
-        final String url = "http://192.168.10.17:8059",
+        final String url = "http://localhost:8069",
                 db = "Final_AlraisEnterprises",
                 username = "donato",
                 password = "...donato09@";

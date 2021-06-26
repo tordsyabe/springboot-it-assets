@@ -200,21 +200,21 @@
 
     </div>
 
-    <!--  Employee Selection  -->
+    <!--  Company Selection  -->
     <div class="mb-1 row align-items-center">
         <div class="col-3">
-            <label class="form-label fw-bold float-end" for="id">
-                Employee
+            <label class="form-label fw-bold float-end" for="companyId">
+                Company
             </label>
         </div>
 
         <div class="col-7">
-            <select class="form-select form-select-sm selectpicker w-100" name="employeeId" id="employeeId"
-                    th:field="*{employeeId}"
+            <select class="form-select form-select-sm selectpicker w-100" name="companyId" id="companyId"
+                    th:field="*{companyId}"
                     data-live-search="true">
 
-                <option th:each="employee : ${employeesDto}"
-                        th:value="${employee.id}">[[${employee.name}]] - [[${employee.job_title}]]
+                <option th:each="company : ${companiesDto}"
+                        th:value="${company.id}">[[${company.name}]]
                 </option>
             </select>
 
@@ -223,7 +223,7 @@
         <div class="col-7 offset-3">
             <div class="invalid-feedback d-block">
                 <ul>
-                    <li th:each="err : ${#fields.errors('employeeId')}" th:text="${err}"/>
+                    <li th:each="err : ${#fields.errors('companyId')}" th:text="${err}"/>
                 </ul>
             </div>
         </div>

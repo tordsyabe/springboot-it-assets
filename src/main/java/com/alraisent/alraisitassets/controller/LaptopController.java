@@ -1,7 +1,7 @@
 package com.alraisent.alraisitassets.controller;
 
 import com.alraisent.alraisitassets.dto.AssetDto;
-import com.alraisent.alraisitassets.dto.EmployeeDto;
+import com.alraisent.alraisitassets.dto.CompanyDto;
 import com.alraisent.alraisitassets.mapper.*;
 import com.alraisent.alraisitassets.model.request.AssetRequestModel;
 import com.alraisent.alraisitassets.model.response.CategoryResponseModel;
@@ -33,10 +33,10 @@ public class LaptopController {
     private final CategoryMapper categoryMapper;
     private final SupplierService supplierService;
     private final SupplierMapper supplierMapper;
-    private final EmployeeService employeeService;
+    private final CompanyService companyService;
 
     @Autowired
-    public LaptopController(AssetService assetService, AssetMapper assetMapper, ModelService modelService, CategoryMapper categoryMapper, ModelMapper modelMapper, CategoryService categoryService, SupplierService supplierService, SupplierMapper supplierMapper, EmployeeService employeeService) {
+    public LaptopController(AssetService assetService, AssetMapper assetMapper, ModelService modelService, CategoryMapper categoryMapper, ModelMapper modelMapper, CategoryService categoryService, SupplierService supplierService, SupplierMapper supplierMapper, EmployeeService employeeService, CompanyService companyService) {
         this.assetService = assetService;
         this.assetMapper = assetMapper;
         this.modelService = modelService;
@@ -45,7 +45,7 @@ public class LaptopController {
         this.categoryService = categoryService;
         this.supplierService = supplierService;
         this.supplierMapper = supplierMapper;
-        this.employeeService = employeeService;
+        this.companyService = companyService;
     }
 
     @GetMapping("/laptop")
@@ -63,7 +63,7 @@ public class LaptopController {
         List<ModelResponseModel> modelResponseModels = new ArrayList<>();
         List<CategoryResponseModel> categoryResponseModels = new ArrayList<>();
         List<SupplierResponseModel> supplierResponseModels = new ArrayList<>();
-        List<Map<String, EmployeeDto>> employeesDto = new ArrayList<>();
+        List<Map<String, CompanyDto>> companiesDto = new ArrayList<>();
 
         modelService.getModels().forEach(modelDto -> {
             modelResponseModels.add(modelMapper.modelDtoToResponse(modelDto, new CycleAvoidingMappingContext()));
@@ -77,18 +77,17 @@ public class LaptopController {
             supplierResponseModels.add(supplierMapper.supplierDtoToResponse(supplierDto, new CycleAvoidingMappingContext()));
         });
 
-        employeeService.getEmployees().forEach(employeeDto -> {
-            employeesDto.add(employeeDto);
+        companyService.getCompanies().forEach(companyDto -> {
+            companiesDto.add(companyDto);
         });
 
-        System.out.println(employeesDto);
 
 
         model.addAttribute("assetRequestModel", new AssetRequestModel());
         model.addAttribute("modelResponseModels", modelResponseModels);
         model.addAttribute("categoryResponseModels", categoryResponseModels);
         model.addAttribute("supplierResponseModels", supplierResponseModels);
-        model.addAttribute("employeesDto", employeesDto);
+        model.addAttribute("companiesDto", companiesDto);
         model.addAttribute("titleHeader", "Create Laptop");
         model.addAttribute("title", "Create Laptop");
         return "laptop/create";

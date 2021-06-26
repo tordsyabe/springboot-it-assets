@@ -16,6 +16,4 @@ public class EmployeeDto {
 
     private String name;
 
-    @OneToMany(mappedBy = "employee")
-    private List<Asset> assets = new ArrayList<>();
 }

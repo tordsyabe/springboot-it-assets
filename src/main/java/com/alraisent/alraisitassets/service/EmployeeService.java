@@ -11,5 +11,4 @@ public interface EmployeeService {
 
     List<Map<String, EmployeeDto>> getEmployees() throws MalformedURLException, XmlRpcException;
 
-
 }
